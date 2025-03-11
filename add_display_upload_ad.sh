@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START add_display_upload_ad]
 # Creates a media bundle asset.
 #
 # Variables:
@@ -91,3 +92,5 @@ curl -f --request POST \
   ]
 }
 EOF
+
+# [END add_display_upload_ad]

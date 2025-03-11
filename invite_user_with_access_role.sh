@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START invite_user_with_access_role]
 # This code example sends an invitation email to a user.
 #
 # The invitation is to manage a customer account with a desired access role.
@@ -42,3 +43,4 @@ curl -f --request POST \
   }
 }
 EOF
+# [END invite_user_with_access_role]

@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START detect_and_apply_recommendations]
 # Gets keyword recommendations.
 #
 # Variables:
@@ -69,3 +70,4 @@ curl -f --request POST \
   ]
 }
 EOF
+# [END detect_and_apply_recommendations]

@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START generate_keyword_ideas]
 # This code example generates keyword ideas.
 #
 # Variables:
@@ -56,3 +57,4 @@ curl -f --request POST \
   }
 }
 EOF
+# [END generate_keyword_ideas]

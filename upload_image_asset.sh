@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START upload_image_asset]
 # Creates an image asset.
 #
 # Variables:
@@ -57,3 +58,4 @@ curl -f --request POST \
   ]
 }
 EOF
+# [END upload_image_asset]

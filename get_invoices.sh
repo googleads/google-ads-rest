@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START get_invoices]
 # This code example gets invoices for a given billing setup.
 #
 # Variables:
@@ -31,3 +32,4 @@ curl -f "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_I
 --header "developer-token: ${DEVELOPER_TOKEN}" \
 --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
 --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}"
+# [END get_invoices]

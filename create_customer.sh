@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START create_customer]
 # Creates a customer client.
 #
 # Variables:
@@ -37,3 +38,4 @@ curl -f --request POST \
   }
 }
 EOF
+# [END create_customer]

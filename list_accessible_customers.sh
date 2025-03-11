@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START list_accessible_customers]
 # Returns the resource names of customers directly accessible by the user
 # authenticating the call.
 #
@@ -27,3 +28,4 @@ curl -f --request GET \
 --header "Content-Type: application/json" \
 --header "developer-token: ${DEVELOPER_TOKEN}" \
 --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
+# [END list_accessible_customers]

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START upload_click_conversion]
+# [START upload_offline_conversion]
 # This code example uploads a click conversion.
 #
 # Variables:
@@ -67,4 +67,4 @@ curl -f --request POST \
   "partialFailure": true
 }
 EOF
-# [END upload_click_conversion]
+# [END upload_offline_conversion]

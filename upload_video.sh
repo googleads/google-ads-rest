@@ -33,7 +33,7 @@
 # variable.
 FILE_SIZE=$(wc -c < "${VIDEO_FILE_NAME}" | tr -d '\r')
 RESPONSE=$(curl -i -f -v -s --request POST \
-"https://googleads.googleapis.com/resumable/upload/v${API_VERSION}/customers/${CUSTOMER_ID}:youTubeVideoUploads:create" \
+"https://googleads.googleapis.com/resumable/upload/v${API_VERSION}/customers/${CUSTOMER_ID}/youTubeVideoUploads:create" \
 --header "Content-Type: application/json" \
 --header "developer-token: ${DEVELOPER_TOKEN}" \
 --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \

@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Creates a campaign budget.
+# Gets campaigns.
 #
 # Variables:
 #   API_VERSION,

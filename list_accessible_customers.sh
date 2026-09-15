@@ -18,7 +18,6 @@
 #
 # Variables:
 #   API_VERSION,
-#   DEVELOPER_TOKEN,
 #   OAUTH2_ACCESS_TOKEN:
 #     See https://developers.google.com/google-ads/api/rest/auth#request_headers
 #     for details.
@@ -26,6 +25,5 @@
 curl -f --request GET \
 "https://googleads.googleapis.com/v${API_VERSION}/customers:listAccessibleCustomers" \
 --header "Content-Type: application/json" \
---header "developer-token: ${DEVELOPER_TOKEN}" \
 --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
 # [END list_accessible_customers]

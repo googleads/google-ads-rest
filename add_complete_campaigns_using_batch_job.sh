@@ -148,7 +148,6 @@ curl -f --request GET \
 # Variables:
 #   API_VERSION,
 #   CUSTOMER_ID,
-#   DEVELOPER_TOKEN,
 #   MANAGER_CUSTOMER_ID,
 #   OAUTH2_ACCESS_TOKEN:
 #     See https://developers.google.com/google-ads/api/rest/auth#request_headers
@@ -159,7 +158,6 @@ curl -f --request GET \
 curl -f --request GET \
 "https://googleads.googleapis.com/v${API_VERSION}/${BATCH_JOB_RESOURCE_NAME}:listResults?pageSize=1000" \
 --header "Content-Type: application/json" \
---header "developer-token: ${DEVELOPER_TOKEN}" \
 --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
 --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}"
 

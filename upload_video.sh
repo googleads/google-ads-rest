@@ -100,7 +100,6 @@ UPLOADED_VIDEO_RESOURCE_NAME=$(echo $FINALIZE_RESPONSE | jq -r '.resourceName')
 curl -i -v -X POST \
 "https://qa-prod-googleads.sandbox.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/googleAds:search" \
 --header "Content-Type: application/json" \
-  --header "Developer-Token: ${DEVELOPER_TOKEN}" \
   --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
   --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
   --data @- <<EOF

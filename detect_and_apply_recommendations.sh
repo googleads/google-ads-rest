@@ -47,7 +47,6 @@ EOF
 # Variables:
 #   API_VERSION,
 #   CUSTOMER_ID,
-#   DEVELOPER_TOKEN,
 #   MANAGER_CUSTOMER_ID,
 #   OAUTH2_ACCESS_TOKEN:
 #     See https://developers.google.com/google-ads/api/rest/auth#request_headers
@@ -58,7 +57,6 @@ EOF
 curl -f --request POST \
 "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/recommendations:apply" \
 --header "Content-Type: application/json" \
---header "developer-token: ${DEVELOPER_TOKEN}" \
 --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
 --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
 --data @- <<EOF

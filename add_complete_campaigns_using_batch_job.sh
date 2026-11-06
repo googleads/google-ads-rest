@@ -102,7 +102,7 @@ EOF
 #     The resource name of the batch job to run as returned by the previous step.
 
 curl -f --request POST \
-"https://googleads.googleapis.com/v19/${BATCH_JOB_RESOURCE_NAME}:run" \
+"https://googleads.googleapis.com/v${API_VERSION}/${BATCH_JOB_RESOURCE_NAME}:run" \
 --header "Content-Type: application/json" \
 --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
 --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \

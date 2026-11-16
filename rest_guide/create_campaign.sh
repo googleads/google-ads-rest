@@ -26,26 +26,29 @@
 #   OAUTH2_ACCESS_TOKEN
 
 # [START curl_command]
-curl -f --request POST "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/campaigns:mutate" \
---header "Content-Type: application/json" \
---header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
---header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
---data "{
-'validateOnly': true,
-'operations': [
-  {
-    'create': {
-      'status': 'PAUSED',
-      'advertisingChannelType': 'SEARCH',
-      'geoTargetTypeSetting': {
-        'positiveGeoTargetType': 'PRESENCE_OR_INTEREST',
-        'negativeGeoTargetType': 'PRESENCE_OR_INTEREST'
-      },
-      'name': 'My Search campaign #${RANDOM}',
-      'campaignBudget': 'customers/${CUSTOMER_ID}/campaignBudgets/${BUDGET_ID}',
-      'targetSpend': {}
+curl --compressed --fail-with-body --request POST \
+  "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/campaigns:mutate" \
+  --header "Content-Type: application/json" \
+  --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
+  --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
+  --data @- <<EOF
+{
+  "operations": [
+    {
+      "create": {
+        "status": "PAUSED",
+        "advertisingChannelType": "SEARCH",
+        "geoTargetTypeSetting": {
+          "positiveGeoTargetType": "PRESENCE_OR_INTEREST",
+          "negativeGeoTargetType": "PRESENCE"
+        },
+        "name": "My Search campaign #${RANDOM}",
+        "campaignBudget": "customers/${CUSTOMER_ID}/campaignBudgets/${BUDGET_ID}",
+        "targetSpend": {},
+        "containsEuPoliticalAdvertising": "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING"
+      }
     }
-  }
-]
-}"
+  ]
+}
+EOF
 # [END curl_command]

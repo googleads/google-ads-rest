@@ -25,25 +25,27 @@
 #   OAUTH2_ACCESS_TOKEN
 
 # [START curl_command]
-curl -f --request POST "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/campaignBudgets:mutate" \
---header "Content-Type: application/json" \
---header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
---header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
---data "{
-'validateOnly': true,
-'operations': [
-  {
-    'create': {
-      'name': 'My Campaign Budget #${RANDOM}',
-      'amountMicros': 500000,
+curl --compressed --fail-with-body --request POST \
+  "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/campaignBudgets:mutate" \
+  --header "Content-Type: application/json" \
+  --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
+  --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
+  --data @- <<EOF
+{
+  "operations": [
+    {
+      "create": {
+        "name": "My Campaign Budget #${RANDOM}",
+        "amountMicros": 500000
+      }
+    },
+    {
+      "create": {
+        "name": "My Campaign Budget #${RANDOM}",
+        "amountMicros": 500000
+      }
     }
-  },
-  {
-    'create': {
-      'name': 'My Campaign Budget #${RANDOM}',
-      'amountMicros': 500000,
-    }
-  }
-]
-}"
+  ]
+}
+EOF
 # [END curl_command]

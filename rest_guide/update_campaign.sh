@@ -26,20 +26,22 @@
 #   OAUTH2_ACCESS_TOKEN
 
 # [START curl_command]
-curl -f --request POST "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/campaigns:mutate" \
---header "Content-Type: application/json" \
---header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
---header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
---data "{
-'validateOnly': true,
-'operations': [
-  {
-    'update': {
-      'resourceName': 'customers/${CUSTOMER_ID}/campaigns/${CAMPAIGN_ID}',
-      'name': 'A changed campaign name #${RANDOM}',
-    },
-    'updateMask': 'name'
-  }
-],
-}"
+curl --compressed --fail-with-body --request POST \
+  "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/campaigns:mutate" \
+  --header "Content-Type: application/json" \
+  --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
+  --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
+  --data @- <<EOF
+{
+  "operations": [
+    {
+      "update": {
+        "resourceName": "customers/${CUSTOMER_ID}/campaigns/${CAMPAIGN_ID}",
+        "name": "A changed campaign name #${RANDOM}"
+      },
+      "updateMask": "name"
+    }
+  ]
+}
+EOF
 # [END curl_command]

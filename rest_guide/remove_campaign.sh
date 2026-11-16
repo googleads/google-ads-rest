@@ -26,16 +26,18 @@
 #   OAUTH2_ACCESS_TOKEN
 
 # [START curl_command]
-curl -f --request POST "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/campaigns:mutate" \
---header "Content-Type: application/json" \
---header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
---header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
---data "{
-'validateOnly': true,
-'operations': [
-  {
-    'remove': 'customers/${CUSTOMER_ID}/campaigns/${CAMPAIGN_ID}'
-  }
-],
-}"
+curl --compressed --fail-with-body --request POST \
+  "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/campaigns:mutate" \
+  --header "Content-Type: application/json" \
+  --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
+  --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
+  --data @- <<EOF
+{
+  "operations": [
+    {
+      "remove": "customers/${CUSTOMER_ID}/campaigns/${CAMPAIGN_ID}"
+    }
+  ]
+}
+EOF
 # [END curl_command]

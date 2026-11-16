@@ -26,86 +26,91 @@
 #   OAUTH2_ACCESS_TOKEN
 
 # [START curl_command]
-curl -f --request POST "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/googleAds:mutate" \
---header "Content-Type: application/json" \
---header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
---header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
---data "{
-'validateOnly': true,
-'mutateOperations': [
-  {
-    'campaignBudgetOperation': {
-      'create': {
-        'resourceName': 'customers/${CUSTOMER_ID}/campaignBudgets/-1',
-        'name': 'My Campaign Budget #${RANDOM}',
-        'deliveryMethod': 'STANDARD',
-        'amountMicros': 500000,
-        'explicitlyShared': false
+curl --compressed --fail-with-body --request POST \
+  "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/googleAds:mutate" \
+  --header "Content-Type: application/json" \
+  --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
+  --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
+  --data @- <<EOF
+{
+  "mutateOperations": [
+    {
+      "campaignBudgetOperation": {
+        "create": {
+          "resourceName": "customers/${CUSTOMER_ID}/campaignBudgets/-1",
+          "name": "My Campaign Budget #${RANDOM}",
+          "deliveryMethod": "STANDARD",
+          "amountMicros": 500000,
+          "explicitlyShared": false
+        }
       }
-    }
-  },
-  {
-    'campaignOperation': {
-      'create': {
-        'resourceName': 'customers/${CUSTOMER_ID}/campaigns/-2',
-        'status': 'PAUSED',
-        'advertisingChannelType': 'SEARCH',
-        'geoTargetTypeSetting': {
-          'positiveGeoTargetType': 'PRESENCE_OR_INTEREST',
-          'negativeGeoTargetType': 'PRESENCE_OR_INTEREST'
-        },
-        'name': 'My Search campaign #${RANDOM}',
-        'campaignBudget': 'customers/${CUSTOMER_ID}/campaignBudgets/-1',
-        'targetSpend': {}
-      }
-    }
-  },
-  {
-    'adGroupOperation': {
-      'create': {
-        'resourceName': 'customers/${CUSTOMER_ID}/adGroups/-3',
-        'campaign': 'customers/${CUSTOMER_ID}/campaigns/-2',
-        'name': 'My ad group #${RANDOM}',
-        'status': 'PAUSED',
-        'type': 'SEARCH_STANDARD'
-      }
-    }
-  },
-  {
-    'adGroupAdOperation': {
-      'create': {
-        'adGroup': 'customers/${CUSTOMER_ID}/adGroups/-3',
-        'status': 'PAUSED',
-        'ad': {
-          'responsiveSearchAd': {
-            'headlines': [
-              {
-                'pinned_field': 'HEADLINE_1',
-                'text': 'An example headline'
-              },
-              {
-                'text': 'Another example headline'
-              },
-              {
-                'text': 'Yet another headline'
-              }
-            ],
-            'descriptions': [
-              {
-                'text': 'An example description'
-              },
-              {
-                'text': 'Another example description'
-              }
-            ],
-            'path1': 'all-inclusive',
-            'path2': 'deals'
+    },
+    {
+      "campaignOperation": {
+        "create": {
+          "resourceName": "customers/${CUSTOMER_ID}/campaigns/-2",
+          "status": "PAUSED",
+          "advertisingChannelType": "SEARCH",
+          "geoTargetTypeSetting": {
+            "positiveGeoTargetType": "PRESENCE_OR_INTEREST",
+            "negativeGeoTargetType": "PRESENCE"
           },
-          'finalUrls': ['https://www.example.com']
+          "name": "My Search campaign #${RANDOM}",
+          "campaignBudget": "customers/${CUSTOMER_ID}/campaignBudgets/-1",
+          "targetSpend": {},
+          "containsEuPoliticalAdvertising": "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING"
+        }
+      }
+    },
+    {
+      "adGroupOperation": {
+        "create": {
+          "resourceName": "customers/${CUSTOMER_ID}/adGroups/-3",
+          "campaign": "customers/${CUSTOMER_ID}/campaigns/-2",
+          "name": "My ad group #${RANDOM}",
+          "status": "PAUSED",
+          "type": "SEARCH_STANDARD"
+        }
+      }
+    },
+    {
+      "adGroupAdOperation": {
+        "create": {
+          "adGroup": "customers/${CUSTOMER_ID}/adGroups/-3",
+          "status": "PAUSED",
+          "ad": {
+            "responsiveSearchAd": {
+              "headlines": [
+                {
+                  "pinnedField": "HEADLINE_1",
+                  "text": "An example headline"
+                },
+                {
+                  "text": "Another example headline"
+                },
+                {
+                  "text": "Yet another headline"
+                }
+              ],
+              "descriptions": [
+                {
+                  "text": "An example description"
+                },
+                {
+                  "text": "Another example description"
+                }
+              ],
+              "path1": "all-inclusive",
+              "path2": "deals"
+            },
+            "finalUrls": [
+              "https://www.example.com"
+            ]
+          }
         }
       }
     }
-  }
-]
-}"
+  ]
+}
+EOF
 # [END curl_command]

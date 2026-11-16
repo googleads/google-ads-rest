@@ -1,0 +1,47 @@
+#!/bin/bash
+# Copyright 2026 Google LLC
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Updates the name of an existing campaign.
+#
+# For details, see
+# https://developers.google.com/google-ads/api/rest/examples#updates.
+#
+# Variables:
+#   API_VERSION
+#   CAMPAIGN_ID
+#   CUSTOMER_ID
+#   MANAGER_CUSTOMER_ID
+#   OAUTH2_ACCESS_TOKEN
+
+# [START curl_command]
+curl --compressed --fail-with-body --request POST \
+  "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/campaigns:mutate" \
+  --header "Content-Type: application/json" \
+  --header "login-customer-id: ${MANAGER_CUSTOMER_ID}" \
+  --header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
+  --data @- <<EOF
+{
+  "operations": [
+    {
+      "update": {
+        "resourceName": "customers/${CUSTOMER_ID}/campaigns/${CAMPAIGN_ID}",
+        "name": "A changed campaign name #${RANDOM}"
+      },
+      "updateMask": "name"
+    }
+  ]
+}
+EOF
+# [END curl_command]

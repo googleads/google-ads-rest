@@ -25,5 +25,5 @@
 curl -f --request GET \
 "https://googleads.googleapis.com/v${API_VERSION}/customers:listAccessibleCustomers" \
 --header "Content-Type: application/json" \
---header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}" \
+--header "Authorization: Bearer ${OAUTH2_ACCESS_TOKEN}"
 # [END list_accessible_customers]

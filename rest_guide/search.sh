@@ -23,7 +23,8 @@
 #   CUSTOMER_ID
 #   MANAGER_CUSTOMER_ID
 #   OAUTH2_ACCESS_TOKEN
-#   PAGE_TOKEN
+#   PAGE_TOKEN: Optional. Leave empty to retrieve the first page. To retrieve
+#     the next page, set to the nextPageToken value from the previous response.
 
 # [START curl_command]
 curl --compressed --fail-with-body --request POST \

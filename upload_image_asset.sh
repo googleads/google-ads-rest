@@ -24,12 +24,6 @@
 #     for details.
 #
 #   IMAGE_CONTENT: A base64-encoded string of the raw bytes data of an image.
-
-#   IMAGE_MIME_TYPE: The MIME type of the image, for example, IMAGE_JPEG.
-#   IMAGE_FILE_SIZE: The file size of the image in bytes, for example, 1000000.
-#   IMAGE_HEIGHT: The height of the image, for example, 100.
-#   IMAGE_WIDTH: The width of the image, for example, 200.
-#   IMAGE_URL: The URL of the image.
 curl -f --request POST \
 "https://googleads.googleapis.com/v${API_VERSION}/customers/${CUSTOMER_ID}/assets:mutate" \
 --header "Content-Type: application/json" \
@@ -41,14 +35,7 @@ curl -f --request POST \
     {
       "create": {
         "imageAsset": {
-          "data": "${IMAGE_CONTENT}",
-          "fileSize": "${IMAGE_FILE_SIZE}",
-          "mimeType": "${IMAGE_MIME_TYPE}",
-          "fullSize": {
-            "heightPixels": "${IMAGE_HEIGHT}",
-            "widthPixels": "${IMAGE_WIDTH}",
-            "url": "${IMAGE_URL}"
-          }
+          "data": "${IMAGE_CONTENT}"
         },
         "name": "Marketing Image"
       }
